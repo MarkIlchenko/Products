@@ -1,24 +1,71 @@
-import logo from './logo.svg';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from './pages/Root';
+import Dashboard from './pages/Dashboard';
+import Users from './pages/Users';
+import Products from './pages/Products';
+import Error from './pages/Error';
 import './App.css';
+
+const routes = createBrowserRouter([{
+  path: '/',
+  element: <Root />,
+  errorElement: <Error />,
+  children: [
+    {
+      path: '/',
+      element: <Dashboard />
+    },
+    {
+      path: '/users',
+      element: <Users />
+    },
+    {
+      path: '/products',
+      element: <Products />
+    }
+  ]
+}]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+       // <Layout>
+       //     <Header className="header">
+       //         <div className="logo">Admin</div>
+       //     </Header>
+       //     <Layout>
+       //         <Sider
+       //             width={200}
+       //             theme={'light'}
+       //         >
+       //             <Sidemenu />
+       //         </Sider>
+       //         <Layout
+       //             style={{
+       //                 padding: '0 24px 24px',
+       //             }}
+       //         >
+       //             <Breadcrumb
+       //                 style={{
+       //                     margin: '16px 0',
+       //                 }}
+       //             >
+       //                 <Breadcrumb.Item>Home</Breadcrumb.Item>
+       //                 <Breadcrumb.Item>List</Breadcrumb.Item>
+       //                 <Breadcrumb.Item>App</Breadcrumb.Item>
+       //             </Breadcrumb>
+       //             <Content
+       //                 style={{
+       //                     padding: 24,
+       //                     margin: 0,
+       //                     minHeight: 280
+       //                 }}
+       //             >
+       //                 Content
+       //             </Content>
+       //         </Layout>
+       //     </Layout>
+       // </Layout>
+       <RouterProvider router={routes} />
   );
 }
 
